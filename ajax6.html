@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> 跨域--笑话 </title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+	<style type="text/css">
+		*{ margin:0; padding: 0; }
+		html{ font-size: 15.625px; }
+		header{ height: 2.816rem; width: 100%; background: green; }
+		footer{ height: 2.816rem; width: 100%; background: green; }
+		section{ height: 100vh; width: 100%; background: orange }
+	</style>
+</head>
+<body>
+	<header></header>
+	<section>
+		<ul>
+		
+		</ul>
+	</section>
+	<footer></footer>
+</body>
+</html>
+<script type="text/javascript">
+	var strid = [];
+	var str = "";
+	var _apikey = "3b31ec8293d147848f18dffd2be7f9aa";
+	var _url = "http://route.showapi.com/341-3?showapi_appid=	28912&showapi_sign=3b31ec8293d147848f18dffd2be7f9aa&maxResult=30" ;
+	$.ajax({
+		url: _url,
+		type:"GET",
+		dataType:"json",
+		fail:function(){
+			console.log("fail");
+		},
+		success:function(data){
+			console.log(data);
+			data = data.showapi_res_body.contentlist;
+			for(var i=0,len=data.length; i<len; i++){
+				strid.push(data[i].id);
+				str += `<li><img src="${data[i].img}">
+				<p>${data[i].title}</p></li>`;
+			}
+			$("section>ul").append(str);
+			console.log(strid);
+		}
+	});	
+
+</script>
+
+                    

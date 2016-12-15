@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> 请求头跨域 </title>
+	<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+</head>
+<body>
+	<input type="number" class="txt" placeholder="请输入数量">
+	<button id="btn">搜索</button>
+</body>
+</html>
+<script type="text/javascript">
+	var str = "";
+	$("#btn").on("click",function(){
+		var url = "http://apis.baidu.com/txapi/mvtp/meinv";
+		var key = "string=" + $(".txt").val();
+		var apikey = "cb0db604c750f4f33bd11425703d18ad";
+		getData(url,key,apikey);
+	});
+	function getData(url,data,apikey){
+		var corsurl = url + "?" + data;
+		$.ajax({
+			url:"ajax.php",
+			type:"GET",
+			dataType:"json",
+			data:{ data : corsurl, headers : apikey}
+		}).done(function(data){
+			console.log(data);
+		}).fail(function(){
+			console.log("fail");
+		});	
+	}
+</script>

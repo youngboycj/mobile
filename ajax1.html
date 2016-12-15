@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> ajax初步使用 </title>
+	<style type="text/css">
+		html,body{ width: 900px; }
+	</style>
+	<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+</head>
+<body>
+	<button class="btn1">添加头部</button>
+	<button class="btn2">添加尾部</button>
+	<button class="btn3">取消头部</button>
+	<button class="btn4">取消尾部</button>
+	<header></header>
+	<section><script type="text/javascript">document.write(new Date());</script></section>
+	<footer></footer>
+</body>
+</html>
+<script type="text/javascript">
+	$(window).load(function(){
+		var _width = $("header").css("width");
+		var _width = $("footer").css("width");
+		$("button:first").click(function(){
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET","header.html",true);
+			xhr.send();
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState === 4){
+					if(xhr.status === 200){
+						var txt = xhr.responseText;
+						$("header").html(txt);
+						//console.log(123);
+						console.log(_width);
+					}
+					
+				}
+			}
+		});
+
+		$("button").eq(1).click(function(){
+			var xhr1 = new 	XMLHttpRequest();
+			xhr1.open("GET","footer.plate",true);
+			xhr1.send();
+			xhr1.onreadystatechange = function(){
+				if(xhr1.readyState === 4){
+					if(xhr1.status === 200){
+						var txt1 = xhr1.responseText;
+						$("footer").html(txt1);
+						console.log(_width);
+					}
+				}
+			}
+		});
+		$("button").eq(2).click(function(){
+			/*$("header").hide();
+			console.log(_width);*/
+			var xhr2 = new XMLHttpRequest();
+			xhr2.open("GET","header.html",true);
+			xhr2.send();
+			xhr2.onreadystatechange = function(){
+				if(xhr2.readyState === 4){
+					if(xhr2.status === 200){
+						var txt = xhr2.responseText;
+						$("header").css("display","none");
+						//console.log(123);
+						console.log(_width);
+					}
+					
+				}
+			}
+		});
+
+		$("button:last").click(function(){
+			
+			console.log(_width);
+		});
+	});
+</script>

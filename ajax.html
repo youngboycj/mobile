@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>封装ajax</title>
+	<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+</head>
+<body>
+	
+</body>
+</html>
+<script type="text/javascript">
+//JQ  使用$.deferred(),等.resolve()处理完成之后再处理.done()
+	var wait = function(){
+		var dtd = $.Deferred();//建立一个异步对象
+		//task表示异步
+		var task = function(argument){
+			console.log("我在吃饭");
+			dtd.resolve();//处理完成
+		}
+		setTimeout(task,1000);
+		return dtd.promise();//隐藏当前的状态
+	}
+	//$.when()表示当方法执行的时候
+	//.done()之前的方法执行完成后再去执行其他的
+	$.when(wait())
+		.done(function(argument){
+			console.log('我要睡觉了');
+		}).fail(function(argument){
+			console.log("我要出门了");
+		});
+
+</script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> swiper </title>
+	<link rel="stylesheet" type="text/css" href="js/swiper.min.css">
+
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<style type="text/css">
+
+		.swiper-container{ width:100vh; height:100vh; background: red; text-align: center;}
+		.swiper-slide:first-child{ background: orange; }
+		.swiper-slide:nth-child(2){ background: green; height: 50vh;}
+		.swiper-slide:nth-child(3){ background: pink; height:80vh; width:80vw; }
+		.swiper-slide:nth-child(5){ background: green;  }
+		.swiper-slide:nth-child(4){ background: blue; height:100vh;  }
+
+	</style>
+</head>
+<body>
+	<div class="swiper-container">
+		  <div class="swiper-wrapper">
+		    <div class="swiper-slide">slider1</div>
+		    <div class="swiper-slide">slider2</div>
+		    <div class="swiper-slide">slider3</div>
+		    <div class="swiper-slide">slider4</div>
+		    <div class="swiper-slide">slider5</div>
+		    <div class="swiper-slide">slider6</div>
+		  </div>
+	</div>
+
+</body>
+</html>
+<script> 
+	var mySwiper = new Swiper('.swiper-container', {
+		autoplay: 2000,//可选选项，自动滑动
+		slidesPerView : 3,
+	/*	slidePerGroup:3,*/
+		spaceBetween:20,
+	});
+
+</script>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> 跨域--星座运势 </title>
+	<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+	<style type="text/css">
+		*{margin:0; padding: 0;}
+		input{ height: 20px; line-height: 20px; padding: 5px 2px; outline: none; }
+		.result{ width:500px; height: 300px; background: #ccc; position: absolute; top: 50px; left:30px; display: none; padding-top: 10px;}
+		.result p{ width: 100%; height: 18px; line-height: 18px; font-size: 16px; margin-bottom: 10px; text-indent: 10px;}
+		.result p span{ color: red; font-size: 14px; }
+	</style>
+</head>
+<body>
+	<input type="text" class="xingzuo" placeholder="请输入星座,天蝎座，双子座等">
+	<input type="text" class="shijian" placeholder="请输入时间,today,week,year等">
+	<button class="btn">搜索</button>
+	<div class="result">
+		<p>星座:<span></span></p>
+		<p>幸运星座:<span></span></p>
+		<p>幸运颜色:<span></span></p>
+		<p>健康指数:<span></span></p>
+		<p>爱情指数:<span></span></p>
+		<p>金钱指数:<span></span></p>
+		<p>工作指数:<span></span></p>
+		<p>总括:<span></span></p>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+		$(function(){
+			$(".btn").on("click",function(){
+				var _xingzuo = $(".xingzuo").val();
+				var _shijian = $(".shijian").val();
+				$.ajax({
+					type:"GET",
+					url:"http://apis.baidu.com/bbtapi/constellation/constellation_query",
+					data:{consName:_xingzuo,type:_shijian},
+					datatype:"json",
+					headers:{ apikey:"cb0db604c750f4f33bd11425703d18ad"},
+					success:function(data){
+						/*console.log(data);
+						data = JSON.parse(data);*/
+							console.log(data);
+							$(".result").show();
+							$(".result").find("span").eq(0).html(data.name);
+							$(".result").find("span").eq(1).html(data.QFriend);
+							$(".result").find("span").eq(2).html(data.color);
+							$(".result").find("span").eq(3).html(data.health);
+							$(".result").find("span").eq(4).html(data.love);
+							$(".result").find("span").eq(5).html(data.money);
+							$(".result").find("span").eq(6).html(data.work);
+							$(".result").find("span").eq(7).html(data.summary);
+					},
+					complete:function(){
+						console.log("complete");
+					}
+				});
+			});
+		});
+</script>
